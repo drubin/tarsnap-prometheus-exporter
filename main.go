@@ -93,7 +93,7 @@ func main() {
 	opsProcessed.Inc()
 	prometheus.MustRegister(balanceGauge)
 	http.Handle("/-/metrics", promhttp.Handler())
-	log.Printf("Server listening on http://localhost:2112/-/metrics")
-	http.ListenAndServe(":2112", nil)
+	log.Printf("Server listening on http://localhost:9823/-/metrics")
+	http.ListenAndServe(":9823", nil)
 
 }

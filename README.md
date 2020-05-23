@@ -1,5 +1,7 @@
 # Tarsnap Prometheus Exporter
 
+![goreleaser](https://github.com/drubin/tarsnap-prometheus-exporter/workflows/goreleaser/badge.svg)
+
 A [Tarsnap](https://www.tarsnap.com/) prometheus exporter that can be used
 
 ## Run
@@ -7,6 +9,10 @@ A [Tarsnap](https://www.tarsnap.com/) prometheus exporter that can be used
     $ export TARSNAP_EMAIL="xx@example.org"
     $ export TARSNAP_PASSWORD="password-here"
     $ go run main.go
+
+## Scrape Configuration
+
+You can use `http://localhost:9823/-/metrics` as a scape target. Currently this isn't configurable
 
 ## Docker
 
