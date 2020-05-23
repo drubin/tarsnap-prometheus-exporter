@@ -1,0 +1,21 @@
+
+builds:
+- id: tarsnap-prometheus-exporter 
+  binary: tarsnap-prometheus-exporter 
+  env:
+  - CGO_ENABLED=0
+# archive:
+#   replacements:
+#     darwin: Darwin
+#     linux: Linux
+#     windows: Windows
+#     amd64: x86_64
+#   files:
+#     - LICENSE
+#     - MAINTAINERS.md
+#     - README.md
+#     - grafana
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
