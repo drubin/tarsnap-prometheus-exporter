@@ -28,19 +28,26 @@ func getBalance() (s string, err error) {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	//fmt.Printf(string(body))
 	r := csv.NewReader(strings.NewReader(string(body)))
 
 	records, err := r.ReadAll()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Get the last available balance
+	// Format is roughly
+	// Balance,2020-05-07,,,,,8.180860481360047296
+	// Usage,2020-05-07,device,Daily storage,259688348,0.002094260837459568,
 	length := len(records)
-	//balance is the last value in the 2nd last row.
-	//Format is roughly
-	//Balance,2020-05-07,,,,,8.180860481360047296
-	//Usage,2020-05-07,device,Daily storage,259688348,0.002094260837459568,
-	balanceStr := records[length-2][len(records[length-2])-1]
+	balanceStr := ""
+	for i := length - 1; i < length; i-- {
+		if records[i][0] == "Balance" {
+			balanceStr = records[i][len(records[i])-1]
+			break
+		}
+	}
+
 	return balanceStr, nil
 }
 
